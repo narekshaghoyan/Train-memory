@@ -1,0 +1,13 @@
+#change-color {
+  width: 100px;
+  height: max-content;
+  background-color: black;
+  color: white;
+}
+
+#change-color-array {
+  width: 100px;
+  height: max-content;
+  background-color: black;
+  color: white;
+}
