@@ -11,3 +11,10 @@
   background-color: black;
   color: white;
 }
+
+#my-name {
+  background-color: aquamarine;
+  height: 25px;
+  text-align: center;
+  display:block;
+}
