@@ -12,8 +12,11 @@
   color: white;
 }
 
-#my-name {
+#name > span {
   background-color: aquamarine;
+}
+
+#my-name {
   height: 25px;
   text-align: center;
   display:block;

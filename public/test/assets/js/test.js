@@ -1,3 +1,5 @@
+let myTimerElement = document.getElementById('my-timer')
+
 let myDivChangeColor = document.getElementById('change-color')
 if (myDivChangeColor) {
   myDivChangeColor.addEventListener('click', changeColor)
@@ -48,17 +50,14 @@ function changeColorArrayV1() {
   }
 }
 
-function myTimer(
-  time_limit = 10,
-  add_second = 1
-) {
-  let myTimer = document.getElementById('my-timer')
+function myTimer(timeLimit = 10, addSecond = 1) {
+  myTimerElement.second = (myTimerElement.second || 0) + addSecond;
 
-  if (!myTimer.second) myTimer.second = 0
+  if (myTimerElement.second >= timeLimit) {
+    clearInterval(myInterval);
+  }
 
-  if (myTimer.second >= time_limit - 1) clearInterval(myInterval)
-
-  myTimer.innerText = myTimer.second += add_second
+  myTimerElement.innerText = myTimerElement.second;
 }
 
 function hideName(
@@ -95,16 +94,15 @@ function createDivs() {
   ]
 
   for (let index = 1; index < allData.length; index++) {
-    const title = allData[index]['title']
-    const bgColor = allData[index]['color']
+    const { title, color } = allData[index];
 
     let el = document.createElement('div');
 
     el.classList.add(ClassName);
 
     el.setAttribute('title', title)
-    el.setAttribute('bgColor', bgColor)
-    
+    el.setAttribute('bgColor', color)
+
     el.addEventListener('click', DivClick)
 
     fragment.appendChild(el);
@@ -117,11 +115,10 @@ function DivClick() {
   const title = this.getAttribute('title')
   const bgColor = this.getAttribute('bgColor')
 
-  let newColor, newText;
   if (!title || !bgColor) return alert('Error!')
 
-  newColor = bgColor == this.style.background ? '' : bgColor
-  newText = title == this.innerText ? '' : title
+  const newColor = (bgColor === this.style.background) ? '' : bgColor;
+  const newText = (title === this.innerText) ? '' : title;
 
   this.innerText = newText;
   this.style.background = newColor;
