@@ -124,6 +124,24 @@ function DivClick() {
   this.style.background = newColor;
 }
 
+function incrementCount(element) {
+  let currentCount = parseInt(element.getAttribute('count'));
+  
+  currentCount++;
+  
+  element.setAttribute('count', currentCount);
+  
+  element.querySelector('.count').textContent = currentCount;
+}
+
+function resetCount() {
+  let element = document.getElementById('clicker')
+  
+  element.setAttribute('count', 0);
+  
+  element.querySelector('.count').textContent = 0;
+}
+
 createDivs()
 
 const myInterval = setInterval(myTimer, 1000);

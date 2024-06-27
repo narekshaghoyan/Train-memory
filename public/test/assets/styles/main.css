@@ -29,3 +29,14 @@
   margin-left: 10px;
   border: 1px solid black;
 }
+
+#counter {
+  margin-left: 45%;
+  margin-top: 50px;
+}
+
+#counter > span {
+  background-color: blue;
+  color: white;
+  padding: 40px;
+}
