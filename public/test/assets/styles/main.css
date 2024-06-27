@@ -18,3 +18,11 @@
   text-align: center;
   display:block;
 }
+
+.block {
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border: 1px solid black;
+}

@@ -81,4 +81,52 @@ function hideNameV2(
   this.textContent = this.textContent == MyName ? '' : MyName
 }
 
+function createDivs() {
+  const ClassName = "block";
+  const fragment = document.createDocumentFragment();
+
+  let allData = [
+    { title: 'JS', color: 'red' },
+    { title: 'Html', color: 'green' },
+    { title: 'Css', color: 'yellow' },
+    { title: 'React', color: 'pink' },
+    { title: 'Angular', color: 'blue' },
+    { title: 'Vue', color: 'purple' },
+  ]
+
+  for (let index = 1; index < allData.length; index++) {
+    const title = allData[index]['title']
+    const bgColor = allData[index]['color']
+
+    let el = document.createElement('div');
+
+    el.classList.add(ClassName);
+
+    el.setAttribute('title', title)
+    el.setAttribute('bgColor', bgColor)
+    
+    el.addEventListener('click', DivClick)
+
+    fragment.appendChild(el);
+  }
+
+  document.body.appendChild(fragment);
+}
+
+function DivClick() {
+  const title = this.getAttribute('title')
+  const bgColor = this.getAttribute('bgColor')
+
+  let newColor, newText;
+  if (!title || !bgColor) return alert('Error!')
+
+  newColor = bgColor == this.style.background ? '' : bgColor
+  newText = title == this.innerText ? '' : title
+
+  this.innerText = newText;
+  this.style.background = newColor;
+}
+
+createDivs()
+
 const myInterval = setInterval(myTimer, 1000);
