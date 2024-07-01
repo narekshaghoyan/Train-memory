@@ -4,7 +4,6 @@ export const ember = "./assets/images/ember.svg";
 export const vue = "./assets/images/vue.svg";
 export const backbone = "./assets/images/backbone.svg";
 export const react = "./assets/images/react.svg";
-export const backFace = "./assets/images/back.svg.png";
 
 export const cardsData = [
   { id: 1, name: "aurelia", imageF: aurelia, data_framework: "aurelia" },

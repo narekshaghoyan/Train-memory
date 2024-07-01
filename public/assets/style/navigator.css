@@ -1,0 +1,80 @@
+/* navigator.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.topbar {
+  background-color: #333;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.topbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  height: fit-content;
+}
+
+.topbar li {
+  float: left;
+}
+
+.topbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.topbar li a:hover {
+  background-color: #111;
+}
+
+/* Adjust the main content to account for the fixed topbar */
+main {
+  margin-top: 50px;
+  padding: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .topbar ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .topbar li {
+    width: 100%;
+  }
+
+  .topbar li a {
+    text-align: left;
+    padding: 10px 20px;
+  }
+
+  main {
+    margin-top: 60px; /* Adjust if needed */
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar ul {
+    padding: 0;
+  }
+
+  .topbar li a {
+    padding: 10px;
+  }
+
+  main {
+    margin-top: 70px; /* Adjust if needed */
+  }
+}
