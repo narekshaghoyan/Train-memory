@@ -13,9 +13,11 @@ body {
 }
 
 .container {
-  width: 100%;
-  max-width: 600px; /* Adjust as needed */
+  width: 50%;
+  max-width: 600px;
   padding: 30px;
+  margin: 0 auto;
+  margin-left: 30%;
 }
 
 .info {

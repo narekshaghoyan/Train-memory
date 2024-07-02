@@ -10,6 +10,7 @@ allCards.forEach(card => card.addEventListener('click', flipCard));
 
 window.onload = () => {
   startTimer()
+  
   const GameChecker = setInterval(() => {
     const result = checkGameStatus()
 

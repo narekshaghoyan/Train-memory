@@ -1,4 +1,4 @@
-import { Sequelize, DataTypes } from 'sequelize';
+const { Sequelize, DataTypes } = require('sequelize') 
 
 const sequelize = new Sequelize('sqlite:./database.db');
 
@@ -41,4 +41,4 @@ sequelize.sync()
   .then(() => console.log('Database synced'))
   .catch(err => console.log('Error syncing database:', err));
 
-export default User;
+module.exports = User

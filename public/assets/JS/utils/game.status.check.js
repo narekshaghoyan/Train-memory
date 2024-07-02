@@ -48,6 +48,7 @@ export const checkGameStatus = () => {
   if (GameStatus) {
     const timeElapsed = stopTimer();
     sendTimeToServer(timeElapsed);
+    window.alert('You win!\nResult can check in your profile')
     return {
       'status': true,
       'custom': `You win a game!, your new record is ${timeElapsed}`

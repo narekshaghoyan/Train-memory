@@ -1,12 +1,16 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import User from './database/models/user.js'; // Ensure the file extension is .js
+const express = require('express');
+const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const User = require('./database/models/user.js'); 
+const apicache = require('apicache');
+
+require('dotenv').config();
 
 const app = express();
 const PORT = 3000;
-const SECRET_KEY = 'CyHZCl8HVJEfmx1mQb1ezIiAkTlQMpruJhI0upmB1rYp1F2fESTKRtocOEvpHaf7zkDM47RZF8pOkBsKT1JBijrCpl5PsXe0RJEEQ9JpX6Cw4rbO01bXeVthVOemac4esEPGF'; // Change this to a secure key
+const SECRET_KEY = process.env.SECRET_KEY; 
+let cache = apicache.middleware;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
@@ -26,14 +30,13 @@ const checkAuth = (req, res, next) => {
   }
 };
 
-
 // Redirect to memory game if user is authenticated
 
 app.get('/', async (req, res) => {
   res.redirect('memory-game.html')
 });
 
-app.get('/user-info', checkAuth, async (req, res) => {
+app.get('/user-info', cache('5 minutes'), checkAuth, async (req, res) => {
   try {
     const user = await User.findByPk(req.userId, {
       attributes: ['firstName', 'lastName', 'email', 'regDate', 'lastRecord']
@@ -45,6 +48,19 @@ app.get('/user-info', checkAuth, async (req, res) => {
   } catch (error) {
     console.error('Error fetching user info:', error);
     res.status(500).json({ error: 'Error fetching user info' });
+  }
+});
+
+app.get('/get-top', cache('5 minutes'), checkAuth, async (req, res) => {
+  try {
+    const topUsers = await User.findAll({
+      order: [['lastRecord', 'DESC']], 
+      limit: 10 
+    });
+    return res.json(topUsers); // Assuming you want to return the topUsers array as JSON
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal server error' }); // Handle errors appropriately
   }
 });
 

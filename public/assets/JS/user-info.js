@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div><strong>Last Name:</strong> ${user.lastName}</div>
       <div><strong>Email:</strong> ${user.email}</div>
       <div><strong>Registration Date:</strong> ${new Date(user.regDate).toLocaleString()}</div>
-      <div><strong>Last Record:</strong> ${user.lastRecord ? user.lastRecord / 1000 + ' ss' : 'N/A'}</div>
+      <div><strong>Last Record:</strong> ${user.lastRecord ? (user.lastRecord / 1000).toFixed(2) + ' s' : 'N/A'}</div>
     `;
   }).catch(err => {
     console.error('Error fetching user info:', err);

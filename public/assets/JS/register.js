@@ -28,4 +28,8 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
 
   const result = await response.json();
   document.getElementById('message').innerText = result.message || result.error;
+
+  if (response.status != 200) {
+    window.href = '/login.html'
+  }
 });
