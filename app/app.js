@@ -36,7 +36,7 @@ app.get('/', async (req, res) => {
   res.redirect('memory-game.html')
 });
 
-app.get('/user-info', cache('5 minutes'), checkAuth, async (req, res) => {
+app.get('/user-info', cache('30 seconds'), checkAuth, async (req, res) => {
   try {
     const user = await User.findByPk(req.userId, {
       attributes: ['firstName', 'lastName', 'email', 'regDate', 'lastRecord']
