@@ -77,6 +77,14 @@ app.post('/verify-token', checkAuth, (req, res) => {
 app.post('/register', async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
   try {
+    const userExisting = await User.findOne({
+      where: {
+        email: email
+      }
+    })
+    if (userExisting) {
+      return res.status(201).json({ message: 'User is arleady registered, login!' });
+    }
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await User.create({
       firstName,
@@ -87,6 +95,7 @@ app.post('/register', async (req, res) => {
     });
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: 'Error registering user' });
   }
 });

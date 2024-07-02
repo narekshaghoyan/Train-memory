@@ -29,7 +29,10 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
   const result = await response.json();
   document.getElementById('message').innerText = result.message || result.error;
 
-  if (response.status != 200) {
-    window.href = '/login.html'
-  }
+  setTimeout(() => {
+    console.log(response.status);
+    if (response.status == 201) {
+      window.location.href = '/login.html'
+    }
+  }, 1000);
 });
